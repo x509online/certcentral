@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="jumbotron">
+    <h1 class="display-3">Cert Central</h1>
+    <p class="lead">Use X.509 cryptography sharing your public keys from self-signed-certificates.</p>
+    <hr class="my-4">
+    <p class="card-text">Developers can register their public keys associated to a GitHub account. 
+    These certificates and their known owners are available for public consumption.</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="/home/cli" role="button">Learn more</a>
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card text-white bg-primary" style="max-width: 20rem;">
+            <div class="card-header"><a href="/home/install">Install</a></div>
+            <div class="card-body">
+                <h4 class="card-title">To install the CLI tool</h4>
+                <p class="card-text">Install .NET Core SDK 2.1 </p>
+                <p class="cmd">dotnet tool install -g dotnet-ccc</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card text-white bg-primary" style="max-width: 20rem;">
+            <div class="card-header"><a href="/home/devs">Developers</a></div>
+            <div class="card-body">
+                <h4 class="card-title">To share your keys</h4>
+                <p class="card-text"><a href="/account">Register</a> with your GitHub account.</p>
+                <p class="cmd">ccc push</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card text-white bg-primary" style="max-width: 20rem;">
+            <div class="card-header"><a href="/home/users">Users</a></div>
+            <div class="card-body">
+                <h4 class="card-title">To trust certificates</h4>
+                <p class="card-text">Search for users or certificates</p>
+                <p class="cmd">ccc viewcerts -u USERNAME</p>
+            </div>
+        </div>
+    </div>
+</div>

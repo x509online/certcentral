@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Http;
+
+@model certcentral.web.Account.RegisterViewModel
+
+@inject IHttpContextAccessor httpContextAccessor
+
+
+@{
+    ViewBag.Title = "Register Page";
+}
+
+<form asp-route-returnUrl="/account" method="post">
+    <h2>Register</h2>
+    <p class="text-info">Once registered you can submit new public keys to this site.</p>
+    <div asp-validation-summary="All"></div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" readonly="readonly" value="@httpContextAccessor.HttpContext.User.Identity.Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <button type="submit" class="btn btn-default">Register</button>
+</form>

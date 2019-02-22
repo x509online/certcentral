@@ -1,0 +1,37 @@
+﻿
+@model certcentral.web.Account.UserInfo
+
+
+
+<h2>user profile: github.com/@Model.Login</h2>
+
+
+<div class="bs-docs-section">
+    <br />
+    @if (Model != null)
+    {
+        <h4>@Model.CertFileNames.Count Certificates registered</h4>
+        <ul class="list-group">
+            @foreach (var c in Model.CertFileNames)
+            {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="/api/cert/getusercert?username=@Model.Login&thumbprint=@c.Key">@c.Value [@c.Key]</a>
+                    <span class="nav-link warning">
+                        <a href="/account/deletecert?thumbprint=@c.Key">Delete</a>
+                    </span>
+                </li>
+            }
+        </ul>
+    }
+
+</div>
+    <br />
+
+    <div class="alert alert-secondary">
+        <h4 class="card-title">Use the next key to authenticate</h4>
+        <p class="text-info">ccc login -u @Model.Login  -k @Model.AccessKey</p>
+    </div>
+
+    <a asp-action="unregister">Unregister</a>
+
+

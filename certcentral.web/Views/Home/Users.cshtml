@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Users";
+}
+
+<div class="alert alert-dismissible alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <h4 class="alert-heading">Warning!</h4>
+    <p class="mb-0">
+        CCC make changes to your LocalMachine\Trusted People certificate store. This operation requires elevation. 
+    </p>
+</div>
+
+<h2>Users</h2>
+
+<h3>How to install</h3>
+
+<p>
+    <span class="cmd">ccc</span>is a dotnet global tool, requires the dotnet sdk 2.1 available
+    <a href="https://dotnet.microsoft.com/download/dotnet-core/2.1">here</a>.
+</p>
+<p>
+    <span class="cmd">dotnet tool install -g dotnet-ccc</span>
+</p>
+
+<h5>View registered users</h5>
+<p><span class="cmd">ccc users</span></p>
+
+<h5>View user certificates</h5>
+<p><span class="cmd">ccc certs -user USERNAME</span></p>
+
+<h5>Trusting certificates</h5>
+<p>Users can query the registered certificates in Cert Central and make trust decissions based on the GitHub identity that is linked to it.</p>
+<p>To trust a certificate for MSIX deployment, the certificate must be added to the LocalMachine\Trusted People store. This operation require to run the command prompt with admin privileges.</p>
+<p><span class="cmd">ccc certs -user USERNAME</span></p>
+<p>You can also query all the certificates available in Trusted People to verify if they are registered in cert central</p>
+<p><span class="cmd">ccc trustedpeople</span></p>

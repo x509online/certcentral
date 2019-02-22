@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h2 id="title">Registered Users</h2>
+
+<div id="search-results">
+
+</div>
+
+<script>
+    function FillUsers(resp) {
+        let el = document.getElementById("search-results");
+        let users = JSON.parse(resp);
+        for (u in users) {
+            let a = document.createElement("a");
+            a.innerText = users[u];
+            a.href = "?" + users[u];
+            el.appendChild(a);
+            el.appendChild(document.createElement("br"));
+        }
+    }
+    function FillCerts(resp) {
+        let el = document.getElementById("search-results");
+        let certs = JSON.parse(resp);
+        for (i in certs) {
+            let c = certs[i];
+            let p = document.createElement("p");
+            p.innerText = c.subjectName + " " + c.thumbPrint;
+            el.appendChild(p);
+        }
+    }
+    function Get(url,callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200)
+                callback(xhr.responseText);
+        }
+        xhr.open("GET", url);
+        xhr.send(null);
+    }
+
+    let title = document.getElementById("title");
+    if (location.search) {
+        let term = location.search.substring(1,location.search.length);
+        title.innerText = "Certificate associated to " + term;
+        Get("/api/cert/GetCertsFromUser/"+term, FillCerts)
+    } else {
+        title="Registered Users"
+        Get("/api/cert/getusers", FillUsers);
+    }
+
+</script>

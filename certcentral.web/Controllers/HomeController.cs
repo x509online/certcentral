@@ -23,6 +23,13 @@ namespace certcentral.web.Controllers
         {
             return View();
         }
+
+        [HttpGet("/home/usercerts/{userName}")]
+        public ActionResult UserCerts(string userName)
+        {
+            return View(model: userName);
+        }
+
         public ActionResult Devs()
         {
             return View();

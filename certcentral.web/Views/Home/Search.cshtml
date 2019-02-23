@@ -2,53 +2,41 @@
 @{
     ViewData["Title"] = "Search";
 }
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
-<h2 id="title">Registered Users</h2>
-
-<div id="search-results">
-
+<div id="search-results-users">
+    <h2 id="title">Registered Users</h2>
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center" v-for="user in users">
+            <a :href="'/home/UserCerts/'+user">{{user}}</a>
+        </li>
+    </ul>
 </div>
+
+
 
 <script>
     function FillUsers(resp) {
-        let el = document.getElementById("search-results");
-        let users = JSON.parse(resp);
-        for (u in users) {
-            let a = document.createElement("a");
-            a.innerText = users[u];
-            a.href = "?" + users[u];
-            el.appendChild(a);
-            el.appendChild(document.createElement("br"));
-        }
+        var usersList = JSON.parse(resp);
+        var app = new Vue({
+            el: '#search-results-users',
+            data: {
+                users: usersList
+            }
+        })
     }
-    function FillCerts(resp) {
-        let el = document.getElementById("search-results");
-        let certs = JSON.parse(resp);
-        for (i in certs) {
-            let c = certs[i];
-            let p = document.createElement("p");
-            p.innerText = c.subjectName + " " + c.thumbPrint;
-            el.appendChild(p);
-        }
-    }
-    function Get(url,callback) {
+
+    function Get(url, callback) {
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200)
-                callback(xhr.responseText);
+        if (xhr.readyState == 4 && xhr.status == 200)
+            callback(xhr.responseText);
         }
         xhr.open("GET", url);
         xhr.send(null);
     }
-
-    let title = document.getElementById("title");
-    if (location.search) {
-        let term = location.search.substring(1,location.search.length);
-        title.innerText = "Certificate associated to " + term;
-        Get("/api/cert/GetCertsFromUser/"+term, FillCerts)
-    } else {
-        title="Registered Users"
-        Get("/api/cert/getusers", FillUsers);
-    }
-
+    
+    Get("/api/cert/getusers", FillUsers);
+    
 </script>
+

@@ -1,0 +1,40 @@
+﻿@model string;
+@{
+    ViewData["Title"] = "UserCerts";
+}
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<h2>Certificates registered to http://github.com/@Model</h2>
+
+<div id="search-results-certs">
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center" v-for="cert in certs">
+            {{cert.subjectName}} [{{cert.thumbPrint}}]
+        </li>
+    </ul>
+</div>
+
+<script>
+
+    function FillCerts(resp) {
+        let userCerts = JSON.parse(resp);
+        var app = new Vue({
+            el: '#search-results-certs',
+            data: {
+                certs: userCerts
+            }
+        })
+    }
+    function Get(url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200)
+                callback(xhr.responseText);
+        }
+        xhr.open("GET", url);
+        xhr.send(null);
+    }
+    Get("/api/cert/GetCertsFromUser/" + '@Model', FillCerts)
+</script>
+
+

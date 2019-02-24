@@ -4,3 +4,10 @@
     padding: 7px;
     display: inline-block
 }
+[v-cloak] > * {
+    display: none;
+}
+
+[v-cloak]::before {
+    content: "loading...";
+}

@@ -17,21 +17,42 @@
     <span class="cmd">dotnet tool install -g dotnet-ccc</span>
 </p>
 
-<h3>Features</h3>
+<h3>Features for Users</h3>
 <p>Any user can search for public certificates associated to a github account, the certificates are available in JSON format.</p>
 <h5>View registered users</h5>
 <p><span class="cmd">ccc users</span></p>
 <h5>View user certificates</h5>
 <p><span class="cmd">ccc certs -user USERNAME</span></p>
+<h5>Search certificates by thumbprint</h5>
+<p><span class="cmd">ccc search -t THUMBPRINT</span></p>
 
-<h4>Authentication</h4>
-<p>Some commands require to authenticate the client by using the API key available for registered users. 
-    The information of the logged user is stored locally and can be deleted with the logout command.</p>
+
+<h4>Features for developers</h4>
+<p>
+    Some commands require to authenticate the client by using the API key available for registered users.
+    The information of the logged user is stored locally and can be deleted with the logout command.
+</p>
 <p><span class="cmd">ccc login -u USERNAME -k APIKEY</span></p>
 <p><span class="cmd">ccc logout</span></p>
 
+<h5>How to generate a Self Signed Certificate.</h5>
+<p>There are multiple tools available: powershell, makecert, Azure KeyVault, openssl and more.</p>
+<pre class="cmd">
+    New-SelfSignedCertificate -Subject "CN=Joey, O=Ramones, L=Queens, S=NewYork, C=US" `
+    -FriendlyName Joey `
+    -Type CodeSigning `
+    -KeyUsage DigitalSignature `
+    -KeyLength 2048 `
+    -KeyAlgorithm RSA `
+    -HashAlgorithm SHA256 `
+    -TextExtension @@('2.5.29.37={text}1.3.6.1.5.5.7.3.3', '2.5.29.19={text}Subject Type:End Entity') `
+    -Provider "Microsoft Enhanced RSA and AES Cryptographic Provider" `
+    -CertStoreLocation "Cert:\CurrentUser\My"
+</pre>
+
+
 <h5>Registering certificates</h5>
-<p>To register a certificate in Cert Central you must have the certificate with the private key available in your CurrentUser\Personal certificate store.</p>
+<p>To register a certificate in Cert Central you must have the certificate with the private key available in your CurrentUser\Personal certificate store that satisfy the code signing requirements.</p>
 <p>The private key will be used to sign a random string sent by the server and used to validate content integrity and extract the public key from the signature.</p>
 <p>The certificate with the public key will be available in a certcentral url.</p>
 <p><span class="cmd">ccc push</span></p>

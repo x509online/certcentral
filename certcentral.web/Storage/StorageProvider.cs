@@ -82,6 +82,20 @@ namespace certcentral.web.Storage
             return await UsersContainer.ListBlobsSegmentedAsync(null);
         }
 
+        public async Task DeleteUserFolder(string userName)
+        {
+            var ctoken = new BlobContinuationToken();
+            do
+            {
+                var result = await UsersContainer.ListBlobsSegmentedAsync(userName, true, BlobListingDetails.None, null, ctoken, null, null);
+                ctoken = result.ContinuationToken;
+                await Task.WhenAll(result.Results
+                    .Select(item => (item as CloudBlob)?.DeleteIfExistsAsync())
+                    .Where(task => task != null)
+                );
+            } while (ctoken != null);
+        }
+
         private async Task<CloudBlobContainer> GetOrCreateContainerAsync(string name)
         {
             if (CloudStorageAccount.TryParse(_options.ConnectionString, out CloudStorageAccount storageAccount))

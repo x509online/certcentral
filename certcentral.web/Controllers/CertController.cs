@@ -272,7 +272,20 @@ namespace certcentral.web.Controllers
             return _certsByUser.Where(x => x.Key.StartsWith(thumbprintStart.ToUpperInvariant())).ToArray<KeyValuePair<string, string>>();
         }
 
-
+        [HttpGet("unregister/{userName}")]
+        public async Task UnregisterAsync(string userName)
+        {
+            var auth = ParseHeaders();
+            if (auth.name == userName)
+            {
+                await _storageProvider.DeleteUserFolder(userName);
+                _cache.Remove("certsByUser");
+            }
+            else
+            {
+                throw new SecurityException("Auth headers not found");
+            }
+        }
 
         //Chapu Authentication
         private (string name, Guid key) ParseHeaders()

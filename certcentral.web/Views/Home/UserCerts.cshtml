@@ -9,12 +9,13 @@
 <div id="search-results-certs" v-cloak>
     <ul class="list-group">
         <li class="list-group-item d-flex justify-content-between align-items-center" v-for="cert in certs">
-            {{cert.subjectName}} [{{cert.thumbPrint}}] 
+            {{cert.subjectName}} [{{cert.thumbPrint}}]
             <a :href="'/api/cert/getusercert?username=' + username + '&thumbprint=' + cert.thumbPrint ">View</a>
         </li>
     </ul>
 </div>
 
+<script src="~/js/xhr.js"></script>
 <script>
 
     function FillCerts(resp) {
@@ -25,15 +26,6 @@
                 certs: userCerts
             }
         })
-    }
-    function Get(url, callback) {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200)
-                callback(xhr.responseText);
-        }
-        xhr.open("GET", url);
-        xhr.send(null);
     }
     let username = '@Model';
     Get("/api/cert/GetCertsFromUser/" + username, FillCerts)

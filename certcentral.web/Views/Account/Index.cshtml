@@ -1,10 +1,7 @@
 ﻿
 @model certcentral.web.Account.UserInfo
 
-
-
 <h2>user profile: github.com/@Model.Login</h2>
-
 
 <div class="bs-docs-section">
     <br />
@@ -32,6 +29,17 @@
         <p class="text-info">ccc login -u @Model.Login  -k @Model.AccessKey</p>
     </div>
 
-    <a asp-action="unregister">Unregister</a>
-
+    <a href="javascript:unregister();">Unregister</a>
+    <script src="~/js/xhr.js"></script>
+    <script>
+        function showConfirmation(resp) {
+            alert("Your account has been deleted.")
+            location.href = "/signout";
+        }
+        function unregister() {
+            if (confirm("Are you sure you want to unregister, and delete all your certs?")) {
+                Get("/api/cert/unregister/@Model.Login", showConfirmation, '@Model.Login#@Model.AccessKey');
+            }
+        }
+    </script>
 

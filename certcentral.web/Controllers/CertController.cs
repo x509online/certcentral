@@ -187,7 +187,7 @@ namespace certcentral.web.Controllers
             }
         }
 
-        [HttpGet("DeleteCert")]
+        [HttpGet("deletecert/{thumbprint}")]
         public async Task DeleteCert(string thumbprint)
         {
             var auth = ParseHeaders();

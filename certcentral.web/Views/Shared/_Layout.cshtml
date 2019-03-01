@@ -26,19 +26,22 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="/">CertCentral<span class="sr-only">(current)</span></a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home/search">Users and Certs</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home/cli">How it works</a>
+                    </li>
+
                     @if (httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
                     {
                         <li class="nav-item">
                             <a class="nav-link" href="/account">Account</a>
                         </li>
                     }
-                    <li class="nav-item">
-                        <a class="nav-link" href="/home/search">Certs</a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/home/cli">How it works</a>
-                    </li>
                 </ul>
                 <ul class="nav navbar-nav ml-auto">
                     @if (httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)

@@ -14,7 +14,7 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <a href="/api/cert/getusercert?username=@Model.Login&thumbprint=@c.Key">@c.Value [@c.Key]</a>
                     <span class="nav-link warning">
-                        <a href="/account/deletecert?thumbprint=@c.Key">Delete</a>
+                        <a href="javascript:deleteCert('@c.Key');">Delete</a>
                     </span>
                 </li>
             }
@@ -39,6 +39,16 @@
         function unregister() {
             if (confirm("Are you sure you want to unregister, and delete all your certs?")) {
                 Get("/api/cert/unregister/@Model.Login", showConfirmation, '@Model.Login#@Model.AccessKey');
+            }
+        }
+
+        function showDeleteCertConfirmation(resp) {
+            alert("Certificate deleted successfully !!");
+            location.reload();
+        }
+        function deleteCert(t) {
+            if (confirm("Do you want to delete the cert:\n" + t + " ?")) {
+                Get("/api/cert/deletecert/" + t, showDeleteCertConfirmation, '@Model.Login#@Model.AccessKey');
             }
         }
     </script>

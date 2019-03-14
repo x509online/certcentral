@@ -8,7 +8,7 @@
         <p class="lead">Use X.509 cryptography sharing your public keys from self-signed-certificates.</p>
         <hr class="my-2">
         <p class="card-text">Developers who sign software with self-signed certificates can register their public keys associated to a GitHub account.</p>
-        <p class="card-text">Uers can search and install developer certificates to enable digital signature verification.</p>
+        <p class="card-text">Users can search and install developer certificates to enable digital signature verification.</p>
         <p class="lead">
             <a class="btn btn-primary btn-lg" href="/home/cli" role="button">Learn more</a>
         </p>
@@ -45,6 +45,8 @@
             <div class="card-header"><a href="/home/users">Users</a></div>
             <div class="card-body">
                 <h4 class="card-title">To trust certificates</h4>
+                <p class="card-text">Trust a certificate by thumbprint (requires elevation).</p>
+                <p class="cmd">ccc trust -u USERNAME -t THUMBPRINT</p>
                 <p class="card-text">List all registered users.</p>
                 <p class="cmd">ccc users</p>
                 <p class="card-text">List certificates associated to a user.</p>

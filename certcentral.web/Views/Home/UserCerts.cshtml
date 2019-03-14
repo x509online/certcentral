@@ -4,7 +4,7 @@
 }
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
-<h2>Certificates registered to http://github.com/@Model</h2>
+<h2>Certificates registered to <a href="http://github.com/@Model" target="_blank">GitHub/@Model</a></h2>
 
 <div id="search-results-certs" v-cloak>
     <ul class="list-group">
@@ -13,10 +13,14 @@
                 <img src="~/png/cert.png" width="30" />
                 {{cert.subjectName}} [{{cert.thumbPrint}}]
                 <span style="float:right">
-                    <a :href="'/api/cert/getusercert?username=' + username + '&thumbprint=' + cert.thumbPrint ">View</a>
+                    <a :href="'/api/cert/downloadcert?username=' + username + '&thumbprint=' + cert.thumbPrint ">Download .cer</a>
                 </span>
             </span>
-</li>
+            <span class="cmd">ccc trust -u @Model  -t {{cert.thumbPrint}}</span>
+            <span style="float:right">
+                <a :href="'/api/cert/getusercert?username=' + username + '&thumbprint=' + cert.thumbPrint ">View Json</a>
+            </span>
+        </li>
     </ul>
 </div>
 

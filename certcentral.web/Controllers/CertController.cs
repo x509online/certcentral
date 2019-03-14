@@ -108,6 +108,13 @@ namespace certcentral.web.Controllers
             return cert;
         }
 
+        [HttpGet("DownloadCert")]
+        public async Task<IActionResult> DownloadCert(string username, string thumbprint)
+        {
+            var cert = await GetUserCert(username, thumbprint);
+            var raw = cert.GetRawCertData();
+            return File(raw, "application/x-x509-ca-cert", thumbprint+".cer");
+        }
 
         // Get: api/Cert/rnd
         [HttpGet("rnd")]

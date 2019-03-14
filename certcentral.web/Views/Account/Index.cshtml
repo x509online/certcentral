@@ -1,7 +1,7 @@
 ﻿
 @model certcentral.web.Account.UserInfo
 
-<h2>user profile: github.com/@Model.Login</h2>
+<h2>Account <a href="https://github.com/@Model.Login" target="_blank">GitHub/@Model.Login</a> </h2>
 
 <div class="bs-docs-section">
     <br />
@@ -28,16 +28,19 @@
     }
 
 </div>
-    <br />
+<br />
 
-    <div class="alert alert-secondary">
-        <h4 class="card-title">Use the next key to authenticate</h4>
-        <p class="text-info">ccc login -u @Model.Login  -k @Model.AccessKey</p>
-    </div>
+<div class="alert alert-secondary">
+    <h4 class="card-title">Use the next key to authenticate from the CLI</h4>
+    <p class="text-info">ccc login -u @Model.Login  -k @Model.AccessKey</p>
+</div>
 
-    <a href="javascript:unregister();">Unregister</a>
-    <script src="~/js/xhr.js"></script>
-    <script>
+<button type="button" class="btn btn-danger" onclick="unregister();">
+    Unregister to delete your account and all your registered public keys.
+</button>
+
+<script src="~/js/xhr.js"></script>
+<script>
         function showConfirmation(resp) {
             alert("Your account has been deleted.")
             location.href = "/signout";
@@ -57,5 +60,5 @@
                 Get("/api/cert/deletecert/" + t, showDeleteCertConfirmation, '@Model.Login#@Model.AccessKey');
             }
         }
-    </script>
+</script>
 

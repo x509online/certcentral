@@ -8,10 +8,11 @@
     <h2 id="title">Registered Users</h2>
     <ul class="list-group">
         <li class="list-group-item d-flex justify-content-between align-items-center" v-for="user in users">
-            <div>
-                <img :src="'https://github.com/'+user+'.png'" width="30" height="30" />
-                <a :href="'/home/UserCerts/'+user">{{user}}</a>
-            </div>
+            <a :href="'/home/UserCerts/'+user">
+                
+                    <img :src="'https://github.com/'+user+'.png'" width="30" height="30" />  {{user}}
+                
+            </a>
         </li>
     </ul>
 </div>

@@ -13,13 +13,16 @@
                 <img src="~/png/cert.png" width="30" />
                 {{cert.subjectName}} [{{cert.thumbPrint}}]
                 <span style="float:right">
-                    <a :href="'/api/cert/downloadcert?username=' + username + '&thumbprint=' + cert.thumbPrint ">Download .cer</a>
+                    <a :href="'/api/cert/downloadcert?username=' + username + '&thumbprint=' + cert.thumbPrint ">.cer</a> |
+                    <a :href="'/api/cert/getusercert?username=' + username + '&thumbprint=' + cert.thumbPrint ">.json</a>
                 </span>
             </span>
-            <span class="cmd">ccc trust -u @Model  -t {{cert.thumbPrint}}</span>
-            <span style="float:right">
-                <a :href="'/api/cert/getusercert?username=' + username + '&thumbprint=' + cert.thumbPrint ">View Json</a>
-            </span>
+            <div>
+                <p>Add to TrustedPeople</p>
+                <p class="cmd">ccc trust -u @Model  -t {{cert.thumbPrint}}</p>
+            </div>
+            
+            
         </li>
     </ul>
 </div>

@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28407.52
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "certcentral.web", "certcentral.web\certcentral.web.csproj", "{45C5046A-0462-4A68-9C23-D0D9CF4EDD40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "certcentral.tests", "certcentral.tests\certcentral.tests.csproj", "{77DAC6F2-8426-47D4-9F25-28982812FD77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{45C5046A-0462-4A68-9C23-D0D9CF4EDD40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45C5046A-0462-4A68-9C23-D0D9CF4EDD40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45C5046A-0462-4A68-9C23-D0D9CF4EDD40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77DAC6F2-8426-47D4-9F25-28982812FD77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77DAC6F2-8426-47D4-9F25-28982812FD77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77DAC6F2-8426-47D4-9F25-28982812FD77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77DAC6F2-8426-47D4-9F25-28982812FD77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -18,10 +18,13 @@
                 </span>
             </span>
             <div>
-                <p>Add to TrustedPeople</p>
+                <p>Trust this cert to install MSIX packages using ccc</p>
                 <p class="cmd">ccc trust -u @Model  -t {{cert.thumbPrint}}</p>
             </div>
-            
+            <div>
+                <p>Trust this cert to install nuget packages</p>
+                <p class="cmd">nuget.exe trusted-signers add -name  @Model -certificateFingerprint {{cert.shA256}}</p>
+            </div>
             
         </li>
     </ul>

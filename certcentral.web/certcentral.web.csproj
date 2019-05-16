@@ -10,6 +10,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OAuth" Version="2.1.1" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="2.3.151">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="WindowsAzure.Storage" Version="9.2.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.3.0" />
     <PackageReference Include="System.Security.Cryptography.Pkcs" Version="4.5.0" />

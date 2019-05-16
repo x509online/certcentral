@@ -25,6 +25,7 @@ namespace certcentral.web.Controllers
         public string ThumbPrint { get; set; }
         public string Issuer { get; set; }
         public string SHA256 { get; set; }
+        public string ExpirationDate { get; set; }
 
         public static CertInfo FromX509(X509Certificate2 c)
         {
@@ -33,7 +34,8 @@ namespace certcentral.web.Controllers
                 SubjectName = c.SubjectName.Name,
                 Issuer = c.Issuer,
                 ThumbPrint = c.Thumbprint.ToUpperInvariant(),
-                SHA256 = c.GetCertHashString(new System.Security.Cryptography.HashAlgorithmName("SHA256"))
+                SHA256 = c.GetCertHashString(new System.Security.Cryptography.HashAlgorithmName("SHA256")),
+                ExpirationDate = c.NotAfter.ToString("yyyy-MM-dd")
             };
         }
     }

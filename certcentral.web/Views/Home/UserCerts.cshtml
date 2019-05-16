@@ -11,7 +11,9 @@
         <li class="list-group-item  justify-content-between align-items-center" v-for="cert in certs">
             <span class="nav-link warning">
                 <img src="~/png/cert.png" width="30" />
-                {{cert.subjectName}} [{{cert.thumbPrint}}]
+                
+                {{cert.subjectName}}
+                <div>Expires {{cert.expirationDate}}</div>
                 <span style="float:right">
                     <a :href="'/api/cert/downloadcert?username=' + username + '&thumbprint=' + cert.thumbPrint ">.cer</a> |
                     <a :href="'/api/cert/getusercert?username=' + username + '&thumbprint=' + cert.thumbPrint ">.json</a>

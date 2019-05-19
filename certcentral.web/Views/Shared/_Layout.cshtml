@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Http;
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@using Microsoft.AspNetCore.Http;
 
 @inject IHttpContextAccessor httpContextAccessor
 
@@ -22,6 +23,7 @@
     <title>CertCentral - @ViewBag.Title</title>
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
+    @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body>
     <header>

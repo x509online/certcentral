@@ -28,6 +28,7 @@ namespace certcentral.web
             .Build();
 
             return  WebHost.CreateDefaultBuilder(args)
+                .UseApplicationInsights()
                 .UseConfiguration(config)
                 .UseStartup<Startup>();
         }

@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>4743c556-12f4-4d84-bbc0-c76f741c7e27</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/d8ed1ba9-6317-430f-9476-e16880367402/resourcegroups/x509online/providers/microsoft.insights/components/x509online</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/d8ed1ba9-6317-430f-9476-e16880367402/resourcegroups/x509online/providers/microsoft.insights/components/x509online</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +25,10 @@
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
 </Project>
